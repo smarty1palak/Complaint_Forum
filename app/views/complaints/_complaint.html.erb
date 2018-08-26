@@ -1,0 +1,18 @@
+<li id="complaint-<%= complaint.id %>">
+  <%= link_to gravatar_for(complaint.user, size: 50), complaint.user %>
+  <span class="user"><%= link_to complaint.user.name, complaint.user %></span>
+<!--  <h1><%#= complaint.title %></h1>-->
+  <span class="content"><%= complaint.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(complaint.created_at) %> ago.
+    <% if complaint.status==false %>
+    <span><div><b>Status: Pending</b></div> </span>
+      <% else %>
+    <span><div><b>Status: Resolved</b></div> </span>
+      <% end %>
+    <% if current_user.admin? && !current_user?(complaint) %>
+    <%= link_to "resolve", complaint, method: :delete,
+                  data: { confirm: "You sure?" } %>
+  <% end %>
+
+</li>

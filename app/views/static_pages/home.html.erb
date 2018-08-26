@@ -1,0 +1,28 @@
+<%# provide(:title, "Home") %>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="complaint_form">
+        <%= render 'shared/complaint_form' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
+
+<div class="center jumbotron">
+ <h1>Welcome to NITK Complaint Forum</h1>
+
+<h2>
+ Please Log In to register complaints.
+</h2>
+
+<%= link_to "Log In!", login_path, class: "btn btn-lg btn-primary" %>
+</div>
+<div class="center">
+<%= link_to image_tag("nitk.jpeg", alt: "Nitk logo"),
+         'http://nitk.ac.in/' %>
+</div>
+<% end %>
